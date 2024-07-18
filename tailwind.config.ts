@@ -35,6 +35,9 @@ const config: Config = {
         button: '6.25rem',
       },
     },
+    data: {
+      checked: 'ui~="checked"',
+    },
   },
   plugins: [],
 }
