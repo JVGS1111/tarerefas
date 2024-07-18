@@ -5,10 +5,13 @@ import { TaskList } from '@/components/TaskList/TaskList'
 export default function Completed() {
   return (
     <>
-      <Header title="What do we have to do for today?" variante="home" />
-      <div className="mx-auto  max-w-app ">
+      <Header
+        title="Looking back for something that you've done?"
+        variante="home"
+      />
+      <div className="mx-auto max-w-app">
         <NavigationBar checked="completed" />
-        <TaskList />
+        <TaskList listTitle="Completed" />
       </div>
     </>
   )

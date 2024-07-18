@@ -8,9 +8,9 @@ export default function Home() {
       <Header title="What do we have to do for today?" variante="home" />
       <div className="mx-auto  max-w-app ">
         <NavigationBar checked="home" />
-        <TaskList />
-        <TaskList />
-        <TaskList />
+        <TaskList listTitle="test" showAddButton />{' '}
+        <TaskList listTitle="test" showAddButton />{' '}
+        <TaskList listTitle="test" showAddButton />
       </div>
     </>
   )

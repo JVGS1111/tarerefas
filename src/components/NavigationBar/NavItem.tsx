@@ -3,12 +3,13 @@ import Link from 'next/link'
 interface NavItemProps {
   text: string
   checked?: boolean
+  route: string
 }
 
-export function NavItem({ text, checked = false }: NavItemProps) {
+export function NavItem({ text, checked = false, route }: NavItemProps) {
   return (
     <Link
-      href="#"
+      href={route}
       className="min-w-button rounded-md bg-white px-3 py-2.5 text-center text-text shadow-sm data-checked:bg-green-400 data-checked:text-white"
       data-ui={checked === true ? 'checked' : ''}
     >

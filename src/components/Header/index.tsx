@@ -10,9 +10,16 @@ export function Header({ title, variante = 'home' }: HeaderProps) {
     if (variante === 'home') {
       return (
         <div className="flex w-full">
-          <button className="ml-auto">
-            <GithubLogo className="text-title" size={32} />
-          </button>
+          <a
+            className="ml-auto"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/JVGS1111/tarerefas"
+          >
+            <button>
+              <GithubLogo className="text-title" size={32} />
+            </button>
+          </a>
         </div>
       )
     }
