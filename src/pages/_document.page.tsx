@@ -16,7 +16,7 @@ export default function Document() {
         />
       </Head>
       <body>
-        <main className="h-screen bg-app-bg">
+        <main className="min-h-screen bg-app-bg">
           <Main />
           <NextScript />
         </main>

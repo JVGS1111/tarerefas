@@ -1,11 +1,17 @@
 import { Header } from '@/components/Header'
 import { NavigationBar } from '@/components/NavigationBar'
+import { TaskList } from './components/TaskList'
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Header title="What do we have to do for today?" variante="home" />
-      <NavigationBar />
-    </div>
+      <div className="mx-auto  max-w-app ">
+        <NavigationBar />
+        <TaskList />
+        <TaskList />
+        <TaskList />
+      </div>
+    </>
   )
 }
