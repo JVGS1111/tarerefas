@@ -3,9 +3,20 @@ import { ArrowLeft, GithubLogo } from '@phosphor-icons/react'
 interface HeaderProps {
   title: string
   variante: 'home' | 'create'
+  goBackFunction?: () => void
 }
 
-export function Header({ title, variante = 'home' }: HeaderProps) {
+export function Header({
+  title,
+  variante = 'home',
+  goBackFunction,
+}: HeaderProps) {
+  function goBack() {
+    if (goBackFunction) {
+      goBackFunction()
+    }
+  }
+
   function renderActionBar() {
     if (variante === 'home') {
       return (
@@ -16,7 +27,7 @@ export function Header({ title, variante = 'home' }: HeaderProps) {
             rel="noopener noreferrer"
             href="https://github.com/JVGS1111/tarerefas"
           >
-            <button>
+            <button type="button">
               <GithubLogo className="text-title" size={32} />
             </button>
           </a>
@@ -26,10 +37,13 @@ export function Header({ title, variante = 'home' }: HeaderProps) {
 
     return (
       <div className="flex w-full justify-between" data-testid="create-variant">
-        <button>
+        <button type="button" onClick={goBack}>
           <ArrowLeft className="text-title" size={32} />
         </button>
-        <button className="font-medium text-title disabled:text-text">
+        <button
+          className="font-medium text-title disabled:text-text"
+          type="submit"
+        >
           done
         </button>
       </div>

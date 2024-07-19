@@ -13,7 +13,7 @@ export function NavigationBar({ checked }: NavigationBarProps) {
         text="Completed"
         checked={checked === 'completed'}
       />
-      <NavItem route="/" text="Add list" />
+      <NavItem route="/add-list" text="Add list" />
     </nav>
   )
 }
