@@ -9,7 +9,7 @@ export function Header({ title, variante = 'home' }: HeaderProps) {
   function renderActionBar() {
     if (variante === 'home') {
       return (
-        <div className="flex w-full">
+        <div className="flex w-full" data-testid="home-variant">
           <a
             className="ml-auto"
             target="_blank"
@@ -25,7 +25,7 @@ export function Header({ title, variante = 'home' }: HeaderProps) {
     }
 
     return (
-      <div className="flex w-full justify-between ">
+      <div className="flex w-full justify-between" data-testid="create-variant">
         <button>
           <ArrowLeft className="text-title" size={32} />
         </button>
