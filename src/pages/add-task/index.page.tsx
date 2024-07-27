@@ -9,6 +9,9 @@ import { InputText } from '@/components/form/Input/TextInput'
 import { Header } from '@/components/Header'
 import { taskOptionsArray } from '@/services/task-options'
 import { useRouter } from 'next/router'
+import { ColorRadioGroup, ColorRadioItem } from './components/ColorSelect'
+import { taskBgColorArray } from '@/models/Task'
+import { twMerge } from 'tailwind-merge'
 
 export default function AddTask() {
   const router = useRouter()
@@ -47,10 +50,26 @@ export default function AddTask() {
             }}
           >
             <SelectTrigger>
-              <SelectValue />
+              <SelectValue placeholder="Select..." />
             </SelectTrigger>
             <SelectContent>{renderSelectOptions()}</SelectContent>
           </Select>
+        </label>
+        <label className="flex flex-col gap-2.5 pb-4 text-xl font-medium text-title ">
+          What's the best color for that?
+          <ColorRadioGroup>
+            {taskBgColorArray.map((item) => {
+              const classname = twMerge(
+                'absolute h-6 w-6 translate-x-[-50%] translate-y-[-50%] rounded-full ',
+                item,
+              )
+              return (
+                <ColorRadioItem key={item} value={item} id={item}>
+                  <span className={classname} />
+                </ColorRadioItem>
+              )
+            })}
+          </ColorRadioGroup>
         </label>
       </div>
     </form>
