@@ -43,6 +43,7 @@ describe('storage', () => {
       completed: false,
       icon: 'test',
       title: 'task title',
+      color: 'test',
     }
     addTaskToList({
       listId: list[0].id,

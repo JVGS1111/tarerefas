@@ -18,7 +18,6 @@ export default function Document() {
       </Head>
       <body>
         <main className="min-h-screen bg-app-bg">
-          <ToastContainer />
           <Main />
           <NextScript />
         </main>

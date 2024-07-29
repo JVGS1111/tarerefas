@@ -16,4 +16,5 @@ export interface Task {
   completed: boolean
   arquived: boolean
   icon: string
+  color: string
 }

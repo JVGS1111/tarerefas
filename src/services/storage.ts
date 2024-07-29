@@ -52,6 +52,7 @@ function _createTaskObject(task: Task): Task {
     completed: false,
     icon: task.icon,
     title: task.title,
+    color: task.color,
   }
   return newTask
 }

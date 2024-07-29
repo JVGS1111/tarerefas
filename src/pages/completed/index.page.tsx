@@ -11,7 +11,7 @@ export default function Completed() {
       />
       <div className="mx-auto max-w-app">
         <NavigationBar checked="completed" />
-        <TaskList listTitle="Completed" />
+        {/* <TaskList listTitle="Completed" /> */}
       </div>
     </>
   )

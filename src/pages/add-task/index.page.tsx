@@ -1,3 +1,4 @@
+'use client'
 import {
   Select,
   SelectContent,
@@ -10,15 +11,18 @@ import { Header } from '@/components/Header'
 import { taskOptionsArray } from '@/services/task-options'
 import { useRouter } from 'next/router'
 import { ColorRadioGroup, ColorRadioItem } from './components/ColorSelect'
-import { taskBgColorArray } from '@/models/Task'
+import { Task, taskBgColorArray } from '@/models/Task'
 import { twMerge } from 'tailwind-merge'
 import { z } from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ErrorMessage } from '@/components/form/Input/ErrorMessage'
+import { useSearchParams } from 'next/navigation'
+import { toast } from 'react-toastify'
+import { addTaskToList } from '@/services/storage'
 
 const addTaskFormSchema = z.object({
-  task: z
+  title: z
     .string({ required_error: 'Type the name of the task' })
     .min(3, { message: 'The task name is too short' }),
   icon: z.string({ required_error: 'Select an icon' }),
@@ -29,6 +33,8 @@ type AddTaskForm = z.infer<typeof addTaskFormSchema>
 
 export default function AddTask() {
   const router = useRouter()
+  const params = useSearchParams()
+
   const {
     register,
     handleSubmit,
@@ -43,7 +49,34 @@ export default function AddTask() {
   })
 
   function handleCreateTask(data: AddTaskForm) {
-    console.log(data)
+    const id = params.get('id')
+    if (!id) {
+      toast.error('ID not found')
+      return
+    }
+    try {
+      const newTask = createTaskObject(data)
+      addTaskToList({
+        listId: id,
+        task: newTask,
+      })
+      toast.success('The task has been added!')
+      router.push('/')
+    } catch (error) {
+      toast.error('An error has occurred')
+    }
+  }
+
+  function createTaskObject(data: AddTaskForm): Task {
+    const task = {
+      arquived: false,
+      completed: false,
+      icon: data.icon,
+      title: data.title,
+      color: data.color,
+    }
+
+    return task
   }
 
   function renderSelectOptions() {
@@ -86,8 +119,10 @@ export default function AddTask() {
       <div className="mx-auto max-w-app p-6">
         <label className="flex flex-col gap-2.5 pb-4 text-xl font-medium text-title">
           {`What’s`} the name of the task?
-          <InputText placeholder="Groceries" {...register('task')} />
-          {errors.task?.message && <ErrorMessage error={errors.task.message} />}
+          <InputText placeholder="Groceries" {...register('title')} />
+          {errors.title?.message && (
+            <ErrorMessage error={errors.title.message} />
+          )}
         </label>
         <label className="flex flex-col gap-2.5 pb-4 text-xl font-medium text-title">
           What sort of task is it?
