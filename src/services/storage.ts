@@ -12,11 +12,13 @@ export function createList(listName: string) {
   const newList: List = { id: uuidV4(), tasks: [], title: listName }
   if (!storage) {
     const newStorage: List[] = [newList]
-    return localStorage.setItem(storageKey.list, JSON.stringify(newStorage))
+    localStorage.setItem(storageKey.list, JSON.stringify(newStorage))
+    return newList
   }
   const parsedStorage: List[] = JSON.parse(storage)
   const newStorage = [...parsedStorage, newList]
-  return localStorage.setItem(storageKey.list, JSON.stringify(newStorage))
+  localStorage.setItem(storageKey.list, JSON.stringify(newStorage))
+  return newList
 }
 
 export interface AddTaskToListProps {
