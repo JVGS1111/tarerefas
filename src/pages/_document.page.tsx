@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import { ToastContainer } from 'react-toastify'
 
 export default function Document() {
   return (
@@ -17,6 +18,7 @@ export default function Document() {
       </Head>
       <body>
         <main className="min-h-screen bg-app-bg">
+          <ToastContainer />
           <Main />
           <NextScript />
         </main>

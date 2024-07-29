@@ -9,3 +9,11 @@ export const taskBgColorArray = [
   'bg-card08',
   'bg-card09',
 ]
+
+export interface Task {
+  id?: string
+  title: string
+  completed: boolean
+  arquived: boolean
+  icon: string
+}
